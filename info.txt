@@ -1,0 +1,11 @@
+처음 내려받을 경우
+아래 순서대로 설치하세요!
+
+1. npm 인스톨
+npm install
+
+2. nest cli 설치
+npm i -g @nestjs/cli
+
+3. nest static 패키지 설치
+npm install --save @nestjs/serve-static
