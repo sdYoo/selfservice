@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Param } from '@nestjs/common';
 
 @Injectable()
 export class AppService {
@@ -8,8 +8,15 @@ export class AppService {
 }
 
 @Injectable()
-export class ApiService {
-  getApiResource(): string {
-    return 'Hello api resource!!!!';
+export class AccountService {
+  getAccountInfo(cspId): string {
+    return cspId + ' 초기 인프라 생성 완료';
+  }
+}
+
+@Injectable()
+export class InfraService {
+  getCloudInfra(cspId): string {
+    return cspId + ' 초기 인프라 생성 완료';
   }
 }

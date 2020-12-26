@@ -1,23 +1,39 @@
-import { Controller, Get } from '@nestjs/common';
+import { Get, Controller, Res, Render, Param } from '@nestjs/common';
 import { AppService } from './app.service';
-import { ApiService } from './app.service';
+import { AccountService } from './app.service';
+import { InfraService } from './app.service';
 
-@Controller('main')
+@Controller()
 export class AppController {
   constructor(private readonly appService: AppService) {}
 
   @Get()
-  getHello(): string {
-    return this.appService.getHello();
+  @Render('index')
+  root() {
+    return { message: this.appService.getHello() };
   }
 }
 
-@Controller('apis')
-export class ApiController {
-  constructor(private readonly apiService: ApiService) {}
+@Controller('account')
+export class AccountController {
+  constructor(private readonly accountService: AccountService) {}
 
-  @Get()
-  getApiResource(): string {
-    return this.apiService.getApiResource();
+  @Get(':cspId')
+  @Render('index')
+  createAccount(@Param('cspId') cspId: string) {
+    console.log(cspId);
+    return { message: this.accountService.getAccountInfo(cspId) };
+  }
+}
+
+@Controller('infra')
+export class InfraController {
+  constructor(private readonly infraService: InfraService) {}
+
+  @Get(':cspId')
+  @Render('index')
+  creatInfra(@Param('cspId') cspId: string) {
+    console.log(cspId);
+    return { message: this.infraService.getCloudInfra(cspId) };
   }
 }
